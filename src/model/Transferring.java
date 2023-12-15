@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-public class Transfering {
+public class Transferring {
     private int id;
     private int transactionDebtor;
     private int transactionCredit;
