@@ -48,6 +48,18 @@ public class AccountRepositoryJdbc implements AccountRepository, CrudOperationsB
 
     @Override
     public Account save(Account toSave) {
+        String sql = ("INSERT INTO accounts (name, balance, currency_id, account_type)\n" +
+                        "VALUES (?, ?, (SELECT id FROM currency WHERE code = ?), ?);");
+        try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(sql)) {
+            preparedStatement.setString(1, toSave.getName());
+            preparedStatement.setDouble(2, toSave.getBalance());
+            preparedStatement.setObject(3, toSave.getCurrency());
+            preparedStatement.setObject(4, toSave.getAccountType());
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return null;
     }
     public void updateAccountBalance(Account account) {
