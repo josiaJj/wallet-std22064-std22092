@@ -23,12 +23,12 @@ public class AccountRepositoryJdbc implements AccountRepository, CrudOperationsB
         List<Account> allAccounts = new ArrayList<>();
         ResultSet resultSet = DBConnection.getConnection().prepareStatement(sql).executeQuery();
         while (resultSet.next()){
-            account.setId(resultSet.getInt("account_id"),
+            account.setId(resultSet.getInt("account_id"));
             account.setName(resultSet.getString("account_name"));
             account.setBalance(resultSet.getDouble("account_balance"));
-            account.setUpdatedDate((LocalDateTime) resultSet.getObject("updatedDate"),
-            account.setIdCurrency(resultSet.getInt("id_currency"),
-            account.setAccountType(resultSet.getString("account_type")
+            account.setUpdatedDate((LocalDateTime) resultSet.getObject("updated_date"));
+            account.setIdCurrency(resultSet.getInt("id_currency"));
+            account.setAccountType((AccountType) resultSet.getObject("account_type"));
             allAccounts.add(account);
         }
         return allAccounts;
@@ -59,19 +59,18 @@ public class AccountRepositoryJdbc implements AccountRepository, CrudOperationsB
 
     @Override
     public Account save(Account toSave) {
-        String sql = ("INSERT INTO accounts (name, balance, currency_id, account_type)\n" +
-                        "VALUES (?, ?, (SELECT id FROM currency WHERE code = ?), ?);");
+        String sql = "INSERT INTO accounts (name , updated_date , id_currency , account_type) VALUES (?,?,?,?) ";
         try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(sql)) {
             preparedStatement.setString(1, toSave.getName());
-            preparedStatement.setDouble(2, toSave.getBalance());
-            preparedStatement.setObject(3, toSave.getCurrency());
-            preparedStatement.setObject(4, toSave.getAccountType());
+            preparedStatement.setObject(2,toSave.getUpdatedDate());
+            preparedStatement.setInt(3, toSave.getIdCurrency());
+            preparedStatement.setObject(4 , toSave.getAccountType());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return null;
+        return toSave;
     }
     public void updateAccountBalance(Account account) {
         String query = "UPDATE account SET balance = ? WHERE id = ?";
