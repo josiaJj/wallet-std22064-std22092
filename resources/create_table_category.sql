@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS "category"(
     name VARCHAR UNIQUE
 );
 
--- Insertions fot "category" table
+-- -- Insert data into the "subcategory" table with the ON CONFLICT DO NOTHING clause for idempotence
 INSERT INTO "category" (name) VALUES
     ('food'),
     ('purchase'),
@@ -19,14 +19,14 @@ INSERT INTO "category" (name) VALUES
 
 
 CREATE TABLE IF NOT EXISTS subcategory (
-                                           id_subcategory SERIAL PRIMARY KEY,
-                                           name VARCHAR UNIQUE,
-                                           type TransactionType,
-                                           id_category INT REFERENCES category(id_category)
-    );
+    id_subcategory SERIAL PRIMARY KEY,
+    name VARCHAR UNIQUE,
+    type TransactionType,
+    id_category INT REFERENCES category(id_category)
+);
 
 
--- Insertions pour la table "subcategory"
+-- Insertions for table "subcategory"
 INSERT INTO "subcategory" (name, type, id_category) VALUES
                                                         -- Food
                                                         ('food', 'DEBIT', (SELECT id_category FROM "category" WHERE name = 'food')),
