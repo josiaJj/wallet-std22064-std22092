@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Setter
 @ToString
 public class Balance {
-    private int id;
+    private String id;
     private int idAccountId;
     private LocalDateTime updatedDatetime;
     private BigDecimal value;
