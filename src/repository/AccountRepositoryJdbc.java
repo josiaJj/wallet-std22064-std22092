@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,25 +18,17 @@ public class AccountRepositoryJdbc implements AccountRepository, CrudOperationsB
     }
     @Override
     public List<Account> findAll() throws SQLException {
-        String sql = "SELECT\n" +
-                "    a.id AS account_id,\n" +
-                "    a.name AS account_name,\n" +
-                "    a.balance AS account_balance,\n" +
-                "    c.name AS currency_name,\n" +
-                "    account_type\n" +
-                "FROM\n" +
-                "    accounts a\n" +
-                "JOIN\n" +
-                "    currency c ON a.currency_id = c.id;";
+        String sql = "SELECT * FROM accounts ";
         Account account = new Account();
         List<Account> allAccounts = new ArrayList<>();
         ResultSet resultSet = DBConnection.getConnection().prepareStatement(sql).executeQuery();
         while (resultSet.next()){
-            account.setId(resultSet.getInt("account_id"));
+            account.setId(resultSet.getInt("account_id"),
             account.setName(resultSet.getString("account_name"));
             account.setBalance(resultSet.getDouble("account_balance"));
-            account.setCurrency((Currency) resultSet.getObject("currency_name"));
-            account.setAccountType((AccountType) resultSet.getObject("account_type"));
+            account.setUpdatedDate((LocalDateTime) resultSet.getObject("updatedDate"),
+            account.setIdCurrency(resultSet.getInt("id_currency"),
+            account.setAccountType(resultSet.getString("account_type")
             allAccounts.add(account);
         }
         return allAccounts;
