@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,6 +16,6 @@ public class Transaction {
     private int id;
     private String label;
     private double amount;
-    private Date dateTime;
+    private LocalDateTime dateTime;
     private TransactionType transactionType;
 }
