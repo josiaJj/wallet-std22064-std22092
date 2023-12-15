@@ -8,6 +8,7 @@ import lombok.ToString;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Currency;
 import java.util.List;
 
 @AllArgsConstructor
@@ -19,8 +20,8 @@ public class Account {
     private int id;
     private String name;
     private double balance;
-    private LocalDateTime updatedDate;
+    private LocalDateTime creationAccountDate;
     private List<Transaction> listTransactions = new ArrayList<>();
-    private int idCurrency;
+    private Currency Currency;
     private AccountType accountType;
 }
