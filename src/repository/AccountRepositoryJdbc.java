@@ -36,7 +36,25 @@ public class AccountRepositoryJdbc implements AccountRepository, CrudOperationsB
 
     @Override
     public List<Account> saveAll(List<Account> toSave) {
-        return null;
+        String sql = "INSERT INTO accounts (name , updated_date , id_currency , account_type) VALUES (?,?,?,?)";
+        List<Account> savedAccounts = new ArrayList<>();
+        try(PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(sql)){
+            for (Account account : toSave){
+                preparedStatement.setString(1, account.getName());
+                preparedStatement.setObject(2, account.getUpdatedDate());
+                preparedStatement.setInt(3, account.getIdCurrency());
+                preparedStatement.setObject(4 , account.getAccountType());
+
+                int rowAffected = preparedStatement.executeUpdate();
+                if (rowAffected > 0){
+                    savedAccounts.add(account);
+                }
+            }
+        }
+        catch (SQLException e){
+            e.printStackTrace();
+        }
+        return savedAccounts;
     }
 
     @Override
