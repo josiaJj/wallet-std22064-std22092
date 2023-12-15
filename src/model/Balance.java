@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Balance {
-    private int id_account;
+    private int idAccount;
     private LocalDateTime datetime;
     private BigDecimal value;
 }

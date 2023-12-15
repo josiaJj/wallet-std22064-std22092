@@ -1,9 +1,6 @@
 package model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.sql.Date;
 import java.time.LocalDateTime;
@@ -12,10 +9,12 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Getter
 @Setter
+@ToString
 public class Transaction {
     private int id;
     private String label;
     private double amount;
     private LocalDateTime dateTime;
     private TransactionType transactionType;
+    private int accountId;
 }
