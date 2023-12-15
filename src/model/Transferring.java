@@ -11,7 +11,8 @@ import java.time.LocalDateTime;
 @ToString
 public class Transferring {
     private int id;
-    private int transactionDebtor;
-    private int transactionCredit;
+    private int idDebtor;
+    private int idCreditor;
     private LocalDateTime datetime;
+    private double amount;
 }
