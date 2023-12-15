@@ -10,5 +10,4 @@ import java.sql.Date;
 
 public class AccountServiceImpl implements AccountService{
 
-    }
 }

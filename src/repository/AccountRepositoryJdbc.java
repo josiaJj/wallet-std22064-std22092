@@ -11,7 +11,7 @@ public class AccountRepositoryJdbc implements AccountRepository{
         return null;
     }
 
-    public void updateAccountBalance(Account account) throws SQLException {
+    public void updateAccountBalance(Account account) {
         String query = "UPDATE account SET balance = ? WHERE id = ?";
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
@@ -19,6 +19,8 @@ public class AccountRepositoryJdbc implements AccountRepository{
             preparedStatement.setDouble(1, account.getBalance());
             preparedStatement.setInt(2, account.getId());
             preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
