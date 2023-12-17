@@ -25,14 +25,14 @@ public class TransactionRepositoryJdbc implements TransactionRepository{
             throw new RuntimeException(e);
         }
     }
-    public static BalanceModel getBalanceAtDateTime(AccountModel accountModel, Timestamp transaction_date) {
+    public static Balance getBalanceAtDateTime(Account accountModel, Timestamp transaction_date) {
         try {
             String sql = String.format(
                     "SELECT * FROM \"%s\" WHERE %s = ? AND %s <= ? ORDER BY %s DESC LIMIT 1",
-                    BalanceModel.TABLE_NAME,
-                    BalanceModel.ID_ACCOUNT,
-                    BalanceModel.DATETIME,
-                    BalanceModel.DATETIME
+                    Balance.TABLE_NAME,
+                    Balance.ID_ACCOUNT,
+                    Balance.DATETIME,
+                    Balance.DATETIME
             );
             PreparedStatement preparedStatement = connectionDB.getConnection().prepareStatement(sql);
             preparedStatement.setInt(1, accountModel.getId());

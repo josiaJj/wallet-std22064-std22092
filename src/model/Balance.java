@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @ToString
 public class Balance {
     private String id;
-    private int idAccountId;
+    private int accountId;
     private LocalDateTime updatedDatetime;
     private BigDecimal value;
 }
