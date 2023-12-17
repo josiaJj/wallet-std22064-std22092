@@ -12,25 +12,24 @@ import java.util.List;
 import java.util.UUID;
 
 public class BalanceRepositoryjdbc {
-    public static Balance getBalanceAtDateTime(Account accountModel, Timestamp transaction_date) {
+    public static Balance getBalanceAtDateTime(int accountId, LocalDateTime transactionDatetime) {
         try {
-            String sql = String.format(
-                    "SELECT * FROM \"%s\" WHERE %s = ? AND %s <= ? ORDER BY %s DESC LIMIT 1",
-                    Balance.TABLE_NAME,
-                    Balance.ID_ACCOUNT,
-                    Balance.DATETIME,
-                    Balance.DATETIME
-            );
-            PreparedStatement preparedStatement = connectionDB.getConnection().prepareStatement(sql);
-            preparedStatement.setInt(1, accountModel.getId());
-            preparedStatement.setTimestamp(2, Timestamp.valueOf(transaction_date.toLocalDateTime()));
+            String sql = "SELECT \"value\"\n" +
+                    "            FROM balance_hitory\n" +
+                    "            WHERE updateDateTime = ? AND accountId = ?";
+
+            PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(sql);
+            preparedStatement.setTimestamp(1, Timestamp.valueOf(transactionDatetime));
+            preparedStatement.setInt(2, accountId);
             ResultSet resultSet = preparedStatement.executeQuery();
-            BalanceModel balanceModel = new BalanceModel();
+            Balance balance = new Balance();
             if (resultSet.next()) {
-                balanceModel.setId_account(resultSet.getInt(BalanceModel.ID_ACCOUNT));
-                balanceModel.setValue(resultSet.getBigDecimal(BalanceModel.VALUE));
-                balanceModel.setDatetime(resultSet.getTimestamp(BalanceModel.DATETIME).toLocalDateTime());
-                return balanceModel;
+                balance.setAccountId(resultSet.getInt(balance.getAccountId()));
+                balance.setUpdatedDatetime((LocalDateTime) resultSet.getObject("updateDateTime"));
+                balance.setValue(resultSet.getBigDecimal("value"));
+
+                // save(balance);
+                return balance;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
