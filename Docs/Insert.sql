@@ -11,3 +11,21 @@ VALUES
     (1, 'SORTIE', 50.00, '2024-01-02 12:30:00', 2),
     (1, 'ENTREE', 500.00, '2024-01-03 15:45:00', 3),
     (1, 'SORTIE', 200.00, '2024-01-04 18:30:00', 3);
+
+-- Insérer la catégorie "Salaire"
+INSERT IGNORE INTO categories (id, name) VALUES (1, 'Salaire');
+
+-- Insérer la catégorie "Autres revenus"
+INSERT IGNORE INTO categories (id, name) VALUES (2, 'Autres revenus');
+
+-- Insérer la catégorie "Restaurant"
+INSERT IGNORE INTO categories (id, name) VALUES (3, 'Restaurant');
+
+-- Insérer la catégorie "Téléphone et Multimédia"
+INSERT IGNORE INTO categories (id, name) VALUES (4, 'Téléphone et Multimédia');
+
+-- Insérer la catégorie "Autres dépenses"
+INSERT IGNORE INTO categories (id, name) VALUES (5, 'Autres dépenses');
+
+-- Insérer la catégorie "Prêt"
+INSERT IGNORE INTO wallet_categories (id, name) VALUES (6, 'Prêt');
