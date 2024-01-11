@@ -12,9 +12,27 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AccountRepositoryJdbc implements AccountRepository, CrudOperationsBases<Account>{
+public class AccountRepositoryJdbc implements CrudOperationsBases<Account>{
     public Account findById(int id) {
-        return null;
+        // TODO : add List transactions to return value
+        // TODO : JOIN currency name to accounts
+        String sql = "SELECT * FROM accounts WHERE id = ?";
+        Account account = new Account();
+        try(PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                account.setId(resultSet.getInt("id"));
+                account.setName(resultSet.getString("name"));
+                account.setBalance(resultSet.getDouble("balance"));
+                account.setAccountType((AccountType) resultSet.getObject("account_type"));
+                resultSet.close();
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return account;
     }
     @Override
     public List<Account> findAll() throws SQLException {
@@ -72,6 +90,12 @@ public class AccountRepositoryJdbc implements AccountRepository, CrudOperationsB
         }
         return toSave;
     }
+
+    @Override
+    public Account delete(Account toDelete) {
+        return null;
+    }
+
     public void updateAccountBalance(Account account) {
         String query = "UPDATE account SET balance = ? WHERE id = ?";
         try (Connection connection = DBConnection.getConnection();
