@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class BalanceRepositoryjdbc {
+    // TODO balance CRUD
     public static Balance getBalanceAtDateTime(int accountId, LocalDateTime transactionDatetime) {
         try {
             String sql = "SELECT \"value\"\n" +
@@ -28,7 +29,7 @@ public class BalanceRepositoryjdbc {
                 balance.setUpdatedDatetime((LocalDateTime) resultSet.getObject("updateDateTime"));
                 balance.setValue(resultSet.getBigDecimal("value"));
 
-                // save(balance);
+                // save(balance); TODO
                 return balance;
             }
         } catch (SQLException e) {
@@ -60,7 +61,7 @@ public class BalanceRepositoryjdbc {
 
             while (resultSet.next()) {
                 responseSQL.add(new Balance(
-                        resultSet.getInt("id"),
+                        resultSet.getString("id"),
                         resultSet.getInt("value"),
                         (LocalDateTime) resultSet.getObject("updatedatetime"),
                         resultSet.getBigDecimal("accountid")

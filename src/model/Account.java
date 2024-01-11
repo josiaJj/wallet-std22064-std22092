@@ -20,7 +20,6 @@ public class Account {
     private int id;
     private String name;
     private double balance;
-    private LocalDateTime creationAccountDate;
     private List<Transaction> listTransactions = new ArrayList<>();
     private Currency Currency;
     private AccountType accountType;
