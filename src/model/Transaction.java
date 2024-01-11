@@ -14,9 +14,6 @@ public class Transaction {
     private int id;
     private String label;
     private double amount;
-    private String type;
     private LocalDateTime dateTime;
     private TransactionType transactionType;
-    private int accountId;
-    private int categoryId;
 }
