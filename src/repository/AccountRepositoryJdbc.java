@@ -24,7 +24,7 @@ public class AccountRepositoryJdbc implements CrudOperationsBases<Account>{
 
             if (resultSet.next()) {
                 account.setId(resultSet.getInt("id"));
-                account.setName(resultSet.getString("name"));
+                account.setName(resultSet.getString("\"name\""));
                 account.setBalance(resultSet.getDouble("balance"));
                 account.setAccountType((AccountType) resultSet.getObject("account_type"));
                 resultSet.close();
@@ -38,23 +38,21 @@ public class AccountRepositoryJdbc implements CrudOperationsBases<Account>{
     public List<Account> findAll() throws SQLException {
         String sql = "SELECT * FROM accounts ";
         Account account = new Account();
-        List<Account> allAccounts = new ArrayList<>();
+        List<Account> listAccounts = new ArrayList<>();
         ResultSet resultSet = DBConnection.getConnection().prepareStatement(sql).executeQuery();
         while (resultSet.next()){
-            account.setId(resultSet.getInt("account_id"));
-            account.setName(resultSet.getString("account_name"));
-            account.setBalance(resultSet.getDouble("account_balance"));
-            account.setUpdatedDate((LocalDateTime) resultSet.getObject("updated_date"));
-            account.setIdCurrency(resultSet.getInt("id_currency"));
+            account.setId(resultSet.getInt("id"));
+            account.setName(resultSet.getString("\"name\""));
+            account.setBalance(resultSet.getDouble("balance"));
             account.setAccountType((AccountType) resultSet.getObject("account_type"));
-            allAccounts.add(account);
+            listAccounts.add(account);
         }
-        return allAccounts;
+        return listAccounts;
     }
 
     @Override
     public List<Account> saveAll(List<Account> toSave) {
-        String sql = "INSERT INTO accounts (name , updated_date , id_currency , account_type) VALUES (?,?,?,?)";
+        String sql = "INSERT INTO accounts (\"name\" , updated_date , id_currency , account_type) VALUES (?,?,?,?)";
         List<Account> savedAccounts = new ArrayList<>();
         try(PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(sql)){
             for (Account account : toSave){
