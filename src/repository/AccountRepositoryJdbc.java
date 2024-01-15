@@ -99,9 +99,7 @@ public class AccountRepositoryJdbc implements CrudOperationsBases<Account>{
     public Account delete(Account toDelete) {
         return null;
     }
-    public Account doTransaction(String accountId, TransactionType transactionType) {
 
-    }
 
     public Account updateAccountBalance(Account account) {
         String query = "";

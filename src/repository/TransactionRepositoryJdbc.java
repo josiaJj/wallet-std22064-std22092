@@ -1,6 +1,8 @@
 package repository;
 
+import model.Account;
 import model.Transaction;
+import model.TransactionType;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,5 +27,7 @@ public class TransactionRepositoryJdbc implements TransactionRepository{
             throw new RuntimeException(e);
         }
     }
+    public Account doTransaction(String accountId, TransactionType transactionType) {
 
+    }
 }
