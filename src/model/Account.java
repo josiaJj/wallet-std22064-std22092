@@ -19,7 +19,7 @@ import java.util.List;
 public class Account {
     private int id;
     private String name;
-    private double balance;
+    private Balance balance;
     private List<Transaction> listTransactions = new ArrayList<>();
     private Currency Currency;
     private AccountType accountType;

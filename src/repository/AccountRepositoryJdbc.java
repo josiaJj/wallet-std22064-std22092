@@ -3,6 +3,7 @@ package repository;
 import model.Account;
 import model.AccountType;
 import model.Currency;
+import model.TransactionType;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,7 +17,12 @@ public class AccountRepositoryJdbc implements CrudOperationsBases<Account>{
     public Account findById(int id) {
         // TODO : add List transactions to return value
         // TODO : JOIN currency name to accounts
-        String sql = "SELECT * FROM accounts WHERE id = ?";
+        String sql = "SELECT * FROM accounts a" +
+                "INNER JOIN balance b" +
+                "a.id = b.account_id" +
+                "INNER JOIN transacrions t" +
+
+                "WHERE a.id = ?";
         Account account = new Account();
         try(PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(sql)) {
             preparedStatement.setInt(1, id);
@@ -93,9 +99,12 @@ public class AccountRepositoryJdbc implements CrudOperationsBases<Account>{
     public Account delete(Account toDelete) {
         return null;
     }
+    public Account doTransaction(String accountId, TransactionType transactionType) {
 
-    public void updateAccountBalance(Account account) {
-        String query = "UPDATE account SET balance = ? WHERE id = ?";
+    }
+
+    public Account updateAccountBalance(Account account) {
+        String query = "";
         try (Connection connection = DBConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(query)) {
 

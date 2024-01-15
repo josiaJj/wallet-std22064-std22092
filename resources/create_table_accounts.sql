@@ -3,5 +3,5 @@ CREATE TABLE IF NOT EXISTS accounts (
     "name" VARCHAR(255) NOT NULL,
     account_type VARCHAR(20) NOT NULL,
     currency_id INT,
-    FOREIGN KEY (currency_id) REFERENCES currency(id)
+    FOREIGN KEY (currency_id) REFERENCES currencies(id)
 );
