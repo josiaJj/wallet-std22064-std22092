@@ -1,9 +1,9 @@
 CREATE TABLE IF NOT EXISTS currencies (
-    id SERIAL PRIMARY KEY,
+    id INT PRIMARY KEY,
     "name" VARCHAR(255) NOT NULL,
     code VARCHAR(3) NOT NULL
 );
 
 INSERT IGNORE INTO "currencies" ("name", code) VALUES
-('Ariary', 'MGA'),
-('Euro', 'EUR');
+(1, 'Ariary', 'MGA'),
+(2, 'Euro', 'EUR');
