@@ -3,3 +3,6 @@ CREATE TABLE IF NOT EXISTS balance (
     "value" FLOAT DEFAULT 0,
     updated_dateTime TIMESTAMP DEFAULT current_timestamp
 );
+
+INSERT IGNORE INTO balance("value")
+VALUES (250000), (350000);
