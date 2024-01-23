@@ -7,10 +7,36 @@ import model.TransactionType;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 import static repository.DBConnection.getConnection;
 
-public class TransactionRepositoryJdbc implements TransactionRepository{
+public class TransactionRepositoryJdbc implements CrudOperationsBases, TransactionRepository{
+    @Override
+    public Object findById(int id) {
+        String sql = "SELECT * FROM";
+        return null;
+    }
+
+    @Override
+    public List findAll() throws SQLException {
+        return null;
+    }
+
+    @Override
+    public List saveAll(List toSave) {
+        return null;
+    }
+
+    @Override
+    public Object save(Object toSave) {
+        return null;
+    }
+
+    @Override
+    public Object delete(Object toDelete) {
+        return null;
+    }
     public void insertTransaction(Transaction transaction, int accountId) {
         String query = "INSERT INTO transaction (label, amount, dateTime, transactionType, accountId) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = getConnection();

@@ -21,7 +21,7 @@ public class AccountRepositoryJdbc implements CrudOperationsBases<Account>{
                 "INNER JOIN balance b" +
                 "a.id = b.account_id" +
                 "INNER JOIN transacrions t" +
-
+                "a.id = t.account_id" +
                 "WHERE a.id = ?";
         Account account = new Account();
         try(PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(sql)) {

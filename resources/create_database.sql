@@ -4,3 +4,5 @@ SELECT 'hei_wallet' AS database_name
 CREATE DATABASE hei_wallet;
 
 \c hei_wallet;
+
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
