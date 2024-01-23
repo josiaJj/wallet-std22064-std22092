@@ -4,6 +4,6 @@ CREATE TABLE IF NOT EXISTS currencies (
     code VARCHAR(3) NOT NULL
 );
 
-INSERT IGNORE INTO "currencies" ("name", code) VALUES
+INSERT INTO "currencies" ("name", code) VALUES
 (1, 'Ariary', 'MGA'),
 (2, 'Euro', 'EUR');

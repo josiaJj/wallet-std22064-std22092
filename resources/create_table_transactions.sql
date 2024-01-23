@@ -7,5 +7,5 @@ CREATE TABLE IF NOT EXISTS transactions (
     account_id VARCHAR(50) REFERENCES accounts(id)
 );
 
-INSERT IGNORE INTO transactions (label, amount, date_time, transaction_type, account_id)
+INSERT INTO transactions (label, amount, date_time, transaction_type, account_id)
 VALUES ("Prêt bancaire", "10000")

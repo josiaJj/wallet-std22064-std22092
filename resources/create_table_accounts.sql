@@ -6,6 +6,6 @@ CREATE TABLE IF NOT EXISTS accounts (
     currency_id INT REFERENCES currencies(id)
 );
 
-INSERT IGNORE INTO accounts("name", account_type, balance_id, currency_id)
+INSERT INTO accounts("name", account_type, balance_id, currency_id)
 VALUES ("Compte courant", "Banque", 1),
        ("Compte epargne", "Espèce", 2);

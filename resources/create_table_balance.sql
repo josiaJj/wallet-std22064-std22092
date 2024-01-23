@@ -4,5 +4,5 @@ CREATE TABLE IF NOT EXISTS balance (
     updated_dateTime TIMESTAMP DEFAULT current_timestamp
 );
 
-INSERT IGNORE INTO balance("value")
+INSERT INTO balance("value")
 VALUES (250000), (350000);
