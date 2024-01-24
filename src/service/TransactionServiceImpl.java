@@ -19,6 +19,8 @@ public class TransactionServiceImpl implements TransactionService{
         this.transactionRepositoryJdbc = transactionRepositoryJdbc;
     }
 
+
+
     @Override
     public Account performTransaction(int accountId, double amount, TransactionType transactionType) throws SQLException {
         Account account = new Account();
@@ -46,10 +48,5 @@ public class TransactionServiceImpl implements TransactionService{
         accountRepositoryJdbc.updateAccountBalance(account);
 
         return account;
-    }
-
-    private int generateTransactionId() {
-        // Implémentez la logique pour générer un ID unique pour la transaction
-        return 0;
     }
 }

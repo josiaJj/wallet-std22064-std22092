@@ -11,8 +11,23 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-public class BalanceRepositoryjdbc {
-    // TODO balance CRUD
+public class BalanceRepositoryjdbc implements CrudOperationsBases<Balance> {
+    public Balance findById(int id) {
+        return null;
+    };
+    public List<Balance> findAll() {
+        return null;
+    };
+    public List<Balance> saveAll(List<Balance> toSave) {
+        return null;
+    };
+    public Balance save(Balance toSave) {
+        return null;
+    };
+    public Balance delete(Balance toDelete) {
+        return null;
+    };
+    /*
     public static Balance getBalanceAtDateTime(int accountId, LocalDateTime transactionDatetime) {
         try {
             String sql = "SELECT \"value\"\n" +
@@ -37,6 +52,8 @@ public class BalanceRepositoryjdbc {
         }
         return null;
     }
+    */
+    /*
     public List<Balance> getBalanceHistory(String id, LocalDateTime startDatetime, LocalDateTime endDatetime) {
         String sql;
         if (startDatetime == null && endDatetime == null) {
@@ -75,4 +92,5 @@ public class BalanceRepositoryjdbc {
         }
         return null;
     }
+    */
 }

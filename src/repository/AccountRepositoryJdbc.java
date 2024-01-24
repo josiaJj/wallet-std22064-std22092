@@ -1,9 +1,6 @@
 package repository;
 
-import model.Account;
-import model.AccountType;
-import model.Currency;
-import model.TransactionType;
+import model.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -31,7 +28,7 @@ public class AccountRepositoryJdbc implements CrudOperationsBases<Account>{
             if (resultSet.next()) {
                 account.setId(resultSet.getInt("id"));
                 account.setName(resultSet.getString("\"name\""));
-                account.setBalance(resultSet.getDouble("balance"));
+                account.setBalance((Balance) resultSet.getObject("balance_value"));
                 account.setAccountType((AccountType) resultSet.getObject("account_type"));
                 resultSet.close();
             }
@@ -49,7 +46,7 @@ public class AccountRepositoryJdbc implements CrudOperationsBases<Account>{
         while (resultSet.next()){
             account.setId(resultSet.getInt("id"));
             account.setName(resultSet.getString("\"name\""));
-            account.setBalance(resultSet.getDouble("balance"));
+            account.setBalance((Balance) resultSet.getObject("balance_value"));
             account.setAccountType((AccountType) resultSet.getObject("account_type"));
             listAccounts.add(account);
         }
@@ -100,7 +97,7 @@ public class AccountRepositoryJdbc implements CrudOperationsBases<Account>{
         return null;
     }
 
-
+    /*
     public Account updateAccountBalance(Account account) {
         String query = "";
         try (Connection connection = DBConnection.getConnection();
@@ -113,4 +110,5 @@ public class AccountRepositoryJdbc implements CrudOperationsBases<Account>{
             throw new RuntimeException(e);
         }
     }
+    */
 }

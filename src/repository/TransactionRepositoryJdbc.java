@@ -37,6 +37,7 @@ public class TransactionRepositoryJdbc implements CrudOperationsBases, Transacti
     public Object delete(Object toDelete) {
         return null;
     }
+    /*
     public void insertTransaction(Transaction transaction, int accountId) {
         String query = "INSERT INTO transaction (label, amount, dateTime, transactionType, accountId) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = getConnection();
@@ -56,4 +57,5 @@ public class TransactionRepositoryJdbc implements CrudOperationsBases, Transacti
     public Account doTransaction(String accountId, TransactionType transactionType) {
 
     }
+    */
 }
