@@ -12,7 +12,6 @@ import java.time.LocalDateTime;
 @ToString
 public class Balance {
     private String id;
-    private BigDecimal value;
+    private Float value;
     private LocalDateTime updatedDatetime;
-    private int accountId;
 }

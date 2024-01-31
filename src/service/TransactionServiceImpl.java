@@ -19,7 +19,7 @@ public class TransactionServiceImpl implements TransactionService{
         this.transactionRepositoryJdbc = transactionRepositoryJdbc;
     }
 
-
+    /*
 
     @Override
     public Account performTransaction(int accountId, double amount, TransactionType transactionType) throws SQLException {
@@ -49,4 +49,5 @@ public class TransactionServiceImpl implements TransactionService{
 
         return account;
     }
+    */
 }

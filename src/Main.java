@@ -1,3 +1,4 @@
+import model.Balance;
 import repository.DBConnection;
 
 // Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
@@ -5,5 +6,8 @@ import repository.DBConnection;
 public class Main {
     public static void main(String[] args) {
         DBConnection.getConnection();
+        Balance balance = new Balance();
+        balance.setValue();
+        balanceRepositoryjdbc.save();
     }
 }

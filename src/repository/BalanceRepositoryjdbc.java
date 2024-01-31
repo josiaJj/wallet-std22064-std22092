@@ -22,7 +22,15 @@ public class BalanceRepositoryjdbc implements CrudOperationsBases<Balance> {
         return null;
     };
     public Balance save(Balance toSave) {
-        return null;
+        String sql = "INSERT INTO balance(\"value\")\n" +
+                "VALUES (?)";
+        try (PreparedStatement preparedStatement = DBConnection.getConnection().prepareStatement(sql)) {
+            preparedStatement.setFloat(toSave.getValue());
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return toSaveGIT SATUS;
     };
     public Balance delete(Balance toDelete) {
         return null;
